@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Propiedad{% endblock %}
+{% block contents %}
+
+{% if Propiedad %}
+
+<div style=" background-image: url({{Propiedad.fotoperfil}})" class="img-inmueble">
+
+</div>
+<h1 class="centrado">{{ Propiedad.name }}</h1>
+
+<div class="contenedor detalles">
+  <div class="resumen-propiedad cuadro">
+    <h3>Descripción de la propiedad</h3>
+      <p>
+        {{ Propiedad.details }}
+      </p>
+    
+  </div>
+  <div class="precio cuadro">
+    <p>{{ Propiedad.category }}</p>
+    <p class="precio-p">Precio: {{ Propiedad.price }}</p>
+  </div>
+  <div class="categorias cuadro">
+    <ul class="iconos">
+      <li class="centrado icono">
+        <p>Dormitorios</p>
+        <i class="fa-solid fa-bed"></i>
+        <p>{{ Propiedad.dormitorios }}</p>
+      </li>
+      <li class="centrado icono">
+        <p>Baños</p>
+        <i class="fa-solid fa-toilet"></i>
+        <p>{{ Propiedad.banos }}</p>
+      </li>
+      <li class="centrado icono">
+        <p>Parqueos</p>
+        <i class="fa-solid fa-car"></i>
+        <p>{{ Propiedad.parqueos }}</p>
+      </li>
+      <li class="centrado icono">
+        <p>Medidas</p>
+        <i class="fa-solid fa-ruler-combined"></i>
+        <p>{{ Propiedad.parqueos }}</p>
+      </li>
+    </ul>
+  </div>
+</div>
+  <h1 class="centrado">Galería de fotos</h1>
+  <div class="seccion contenedor no-100">
+    <div class="galeria">
+        <a href="static/images/galeria/01.jpg" data-lightbox="galeria">
+            <img src="{{ Propiedad.foto1 }}" alt="Imagen 1" width="300px" height="250px">
+        </a>
+        <a href="static/images/galeria/02.jpg" data-lightbox="galeria">
+            <img src="{{ Propiedad.foto2 }}" alt="Imagen 2" width="300px" height="250px">
+        </a>
+        <a href="static/images/galeria/03.jpg" data-lightbox="galeria">
+            <img src="{{ Propiedad.foto3 }}" alt="Imagen 3" width="300px" height="250px">
+        </a>
+        <a href="static/images/galeria/02.jpg" data-lightbox="galeria">
+          <img src="{{ Propiedad.foto4 }}" alt="Imagen 4" width="300px" height="250px">
+        </a>
+
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+

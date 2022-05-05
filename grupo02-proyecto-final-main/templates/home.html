@@ -1,0 +1,279 @@
+{% extends 'basehome.html' %}
+{% block title %}Bienes Raices Cevallos{% endblock %}
+{% block contents %}
+
+  <section class="contenedor titulo-home">
+  </section>
+  <h1 class="centrado primario">Propiedades</h1>
+  
+  <main class="contenedor mega-flex">
+    
+    <!--Code para filtro de busqueda-->
+    <section class="filtro-cat">
+      <a href="#casa" class="centrado activo">Casa</a>
+      <a href="#apartamento" class="centrado">Apartamento</a>
+      <a href="#rancho" class="centrado">Rancho</a>
+    </section>
+    <section class="filtros">
+      <form action="#" id="frmDatos">
+        <h3 class="centrado">Filtrar</h3>
+        <div class="selectdiv">
+          <label>
+              <select id="Negocio">
+                  <option selected> Negocio</option>
+                  <option value="Alquiler">Alquiler</option>
+                  <option value="Venta">Venta</option>
+              </select>
+          </label>
+        </div>
+        
+        <div class="selectdiv">
+          <label>
+              <select id="Seguridad">
+                  <option selected> Seguridad</option>
+                  <option value="Privada">Privada</option>
+                  <option value="Calle principa">Calle principal</option>
+                  <option value="Colonia">Colonia</option>
+              </select>
+          </label>
+        </div>
+
+        <div class="selectdiv">
+          <label>
+              <select id="Baños">
+                  <option selected> Baños</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+              </select>
+          </label>
+        </div>
+
+        <div class="selectdiv">
+          <label>
+              <select id="Dormitorios">
+                  <option selected> Dormitorios</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+              </select>
+          </label>
+        </div>
+
+        <div class="selectdiv">
+          <label>
+              <select id="Estacionamientos">
+                  <option selected> Estacionamientos</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+              </select>
+          </label>
+        </div>
+        <input type="submit" value="Aplicar filtro"></input>
+      </form>
+
+    </section>
+
+    <!--####################################           PROPIEDADES      ################################################ -->
+    
+    <div class="ejemplos" id="casa">
+      <!--Ejemplo 1-->
+    {% if ListCasas %}
+    {% for Casa in ListCasas %}
+      <div class="ejemplo">
+        <div class="ejemplo-imagen" style="background-image: url({{ Casa.fotoperfil}}); background-size: cover; background-position: center;">
+          <div class="">
+            <div class="">
+              <h3 id="{{ Casa.category}}" class="precio">{{ Casa.price }} - {{ Casa.category}} </h3>
+            </div> 
+          </div>
+        </div>
+        <div class="ejemplo-contenido">
+          <h3>{{ Casa.name }}</h3>
+
+          <ul class="iconos">
+            <li id="{{ Casa.dormitorios }}" class="centrado icono">
+              <i class="fa-solid fa-bed"></i>
+              <p>{{ Casa.dormitorios }}</p>
+            </li>
+            <li id="{{ Casa.banos }}" class="centrado icono">
+              <i class="fa-solid fa-toilet"></i>
+              <p>{{ Casa.banos }}</p>
+            </li>
+            <li id="{{ Casa.parqueos }}" class="centrado icono">
+              <i class="fa-solid fa-car"></i>
+              <p>{{ Casa.parqueos }}</p>
+            </li>
+            <li class="centrado icono">
+              <i class="fa-solid fa-ruler-combined"></i>
+              <p>{{ Casa.size }}</p>
+            </li>
+          </ul>
+          <div class="centrado"> 
+            <a href="{{ url_for('propiedad.propiedad', id=Casa.id) }}" class="boton boton-morado">Ver</a>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+
+    
+    {% if ListApartamentos %}
+    {% for Apartamento in ListApartamentos %}
+    <div class="ejemplos" id="apartamento">
+      <!--Ejemplo 1-->
+      <div class="ejemplo">
+        <div class="ejemplo-imagen" style="background-image: url({{ Apartamento.fotoperfil}}); background-size: cover; background-position: center;">
+          <h3 class="precio">{{ Apartamento.price }} - {{ Apartamento.category}} </h3>
+        </div>
+        <div class="ejemplo-contenido">
+          <h3>{{ Apartamento.name }}</h3>
+
+          <ul class="iconos">
+            <li class="centrado icono">
+              <i class="fa-solid fa-bed"></i>
+              <p>{{ Apartamento.dormitorios }}</p>
+            </li>
+            <li class="centrado icono">
+              <i class="fa-solid fa-toilet"></i>
+              <p>{{ Apartamento.banos }}</p>
+            </li>
+            <li class="centrado icono">
+              <i class="fa-solid fa-car"></i>
+              <p>{{ Apartamento.parqueos }}</p>
+            </li>
+            <li class="centrado icono">
+              <i class="fa-solid fa-ruler-combined"></i>
+              <p>{{ Apartamento.size }}</p>
+            </li>
+          </ul>
+          <div class="centrado"> 
+            <a href="{{ url_for('propiedad.propiedad', id=Apartamento.id) }}" class="boton boton-morado">Ver</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+    {% endif %}
+
+    {% if ListRanchos %}
+    {% for Rancho in ListRanchos %}
+    <div class="ejemplos" id="rancho">
+      <!--Ejemplo 1-->
+      <div class="ejemplo">
+        <div class="ejemplo-imagen" style="background-image: url({{ Rancho.fotoperfil}}); background-size: cover; background-position: center;">
+          <h3 class="precio">{{ Rancho.price }} - {{ Rancho.category }} </h3>
+        </div>
+        <div class="ejemplo-contenido">
+          <h3>{{ Rancho.name }}</h3>
+
+          <ul class="iconos">
+            <li class="centrado icono">
+              <i class="fa-solid fa-bed"></i>
+              <p>{{ Rancho.dormitorios }}</p>
+            </li>
+            <li class="centrado icono">
+              <i class="fa-solid fa-toilet"></i>
+              <p>{{ Rancho.banos }}</p>
+            </li>
+            <li class="centrado icono">
+              <i class="fa-solid fa-car"></i>
+              <p>{{ Rancho.parqueos }}</p>
+            </li>
+            <li class="centrado icono">
+              <i class="fa-solid fa-ruler-combined"></i>
+              <p>{{ Rancho.size }}</p>
+            </li>
+          </ul>
+          <div class="centrado"> 
+            <a href="{{ url_for('propiedad.propiedad', id=Rancho.id) }}" class="boton boton-morado">Ver</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+    {% endif %}
+  </main>
+
+  <div class="enumerador parallax">
+    <div class="contenedor">
+        <ul class="resumen-pa">
+            <li>
+                <p class="numero">50</p>Inmuebles operados</li>
+            <li>
+                <p class="numero">50</p>Testimonios positivos</li>
+            <li>
+                <p class="numero">50</p>Familias satisfechas</li>
+
+        </ul>
+    </div>
+  </div>
+
+  <!--Code de testimonios-->
+  <section class="contenedor">
+    <h1 class="centrado testimonio-h"> Testimonios</h1>
+    <div class="testimonios">
+      <div class="testimonio">
+        <p class="testimonio-p">
+          “Buen servicio, desde que iniciamos con el proceso de alquiler de casa, hasta que la colocaron. Fue de gran ayuda por
+          la eficiencia y responsabilidad que tiene. Estoy muy satisfecha. Gracias por su trabajo. 
+          La recomiendo con toda seguridad.”
+          Elva de Henríquez.
+        </p>
+      </div>
+
+      <div class="testimonio">
+        <p class="testimonio-p">
+          Agradezco a Nora Cevallos su amabilidad en mostrarnos diferentes casas en alquiler. 
+          Ella es una persona dispuesta a buscar lo mejor para satisfacer a su cliente en sus necesidades de vivienda,
+          no importando el tiempo e inconvenientes que esto conlleve. 
+          ¡Gracias por tu ayuda, tu profesionalismo y atención en ayudarnos a encontrar lo mejor para nosotras!
+          Paty Miguel y Andrea Bendeck.
+        </p>
+      </div>
+
+      <div class="testimonio">
+        <p class="testimonio-p">
+          “La atención al cliente que Nora me dio fue excelente, especialmente porque yo vivo fuera del país.
+          Aun así, Nora siempre me mantuvo informado en una manera profesional y eficiente. 
+          No puedo hablar suficientemente de su profesionalismo que me hizo sentir muy fácil el progreso de principio al 
+          fin”. 
+          Carlos Alberto Rosales.
+        </p>
+      </div>
+
+    </div>
+  </section>
+  <!--Code Mapa Config.-->
+  <!--<section class="contendor-mapa">
+    <div class="mapa-1">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15504.150299856461!2d-89.23720264999999!3d13.716174099999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2ssv!4v1647550072404!5m2!1ses-419!2ssv"
+        width="400"
+        height="300"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+    </div>
+  </section> -->
+  <!--Code Instagram Widget-->
+  <section class="contenedor instagram">
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+    <div class="elfsight-app-7aafff44-68ac-443a-a635-375252e2c5b7"></div>
+  </section>
+{% endblock %}

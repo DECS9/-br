@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Contacto{% endblock %}
+{% block contents %}
+    <div class="contenedor">
+      <div class="contenedor">
+        <div class="contactanos">
+          <div class="info-contacto">
+            <h1>Contáctanos</h1>
+
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            </p>
+
+            <nav class="redes-contacto">
+              <p><i class="fa-brands fa-whatsapp"></i> +(503) 7844 9035</p>
+              <a href="bienesraicescevallos@gmail.com"><i class="fa-solid fa-envelope"></i>bienesraicescevallos@gmail.com</a>
+              <div class="redes">
+                <a href="https://instagram.com/brcevallos "><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/Cevallos-Bienes-Raices-107432514364803/ "><i class="fab fa-facebook-f"></i></a>
+              </div>
+            </nav>
+          </div>
+                
+          <div class="form">
+                  <form class="formulario" action="{{ url_for('contacto.contacto') }}" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.name(class="field", required='required') }}
+                    {{ form.mail(class="field", required='required') }}
+                    {{ form.message(class="field", required='required') }}
+                    {{ form.submit(class="go go-now") }}
+                  </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+
