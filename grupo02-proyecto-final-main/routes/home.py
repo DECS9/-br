@@ -5,10 +5,13 @@ from models.property import Property
 house = Blueprint("home", __name__)
 
 
-@house.route("/", methods=["GET", "POST"])
-def home():
-    PropertyList = Property.query.all()
-    ListCasas = Property.query.filter_by(clasification="Casa").all()
-    ListApartamentos = Property.query.filter_by(clasification="Apartamento").first()
-    ListRanchos = Property.query.filter_by(clasification="Rancho").first()
-    return render_template("home.html", ListCasas = ListCasas, ListApartamentos = ListApartamentos, ListRanchos = ListRanchos, PropertyList = PropertyList)
+@house.route("/<string:clasification>/<string:category>", methods=["GET", "POST"])
+def home(clasification, category):
+    if clasification == "all":
+        listaPropiedades = Property.query.all()
+    else:
+        listaPropiedades = Property.query.filter_by(clasification=clasification, category=category).all()
+    return render_template(
+        "home.html",
+        listaPropiedades=listaPropiedades,
+    )
